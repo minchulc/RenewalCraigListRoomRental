@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+
+
+        * {
+            font-size: 15px;
+        }
+
+        body {
+            background-color: #000;
+            color: white;
+        }
+
+
+
+        form>div {
+            padding: 5px;
+            border: 0px solid red;
+            width: 1000px;
+        }
+
+        form input,
+        form textarea {
+            color: white;
+            border: 1px solid #aaa;
+            background-color: #666;
+            width: 100%;
+            padding: 10px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus {
+            outline: none;
+        }
+
+        textarea {
+            height: 500px;
+        }
+
+        ::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ddd;
+            opacity: 1;
+            /* Firefox */
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #ddd;
+        }
+
+        ::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: #ddd;
+        }
+
+        #btn {
+            background-color: orange;
+            color: #000;
+            border: 0px solid orangered;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/submit">
+        <input type="hidden" name="tableid" value="<%=tableid%>" />
+        <input type="hidden" name="no"      value="<%=data.no%>" />
+        <div><input type="text" name="title" value="<%=data.title%>" placeholder="Title" />     </div>
+        <div><input type="text" name="nick" value="<%=data.nick%>" placeholder="Nick Name" />   </div>
+        <div><textarea name="content" placeholder="Contents"><%=data.content%></textarea>       </div>
+        <div><input type="submit" id="btn" value="<%=data.no?'Modify':'Post New'%>" />          </div>
+    </form>
+</body>
+
+</html>

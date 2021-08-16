@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>content</title>
+
+
+    <style>
+        html {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+
+
+        * {
+            font-size: 15px;
+        }
+
+        body {
+            background-color: #000;
+            color: white;
+        }
+
+
+
+        form>div {
+            padding: 5px;
+            border: 0px solid red;
+            width: 1000px;
+        }
+
+        form input,
+        form textarea {
+            color: white;
+            border: 1px solid #aaa;
+            background-color: #666;
+            width: 100%;
+            padding: 10px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus {
+            outline: none;
+        }
+
+        textarea {
+            height: 500px;
+        }
+
+        ::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ddd;
+            opacity: 1;
+            /* Firefox */
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #ddd;
+        }
+
+        ::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: #ddd;
+        }
+
+        #btn {
+            background-color: orange;
+            color: #000;
+            border: 0px solid orangered;
+        }
+
+
+
+        #container {
+            width: 1000px;
+            background-color: #222;
+            padding: 10px;
+        }
+
+        h1 {
+            margin: 0px;
+            padding: 0px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 10px solid red;
+        }
+
+        .linkbtn {
+            display: inline-block;
+            padding: 5px;
+            width: 80px;
+            background-color: #777;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+        }
+        .btncont{
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>
+            <%=data.title%>
+        </h1>
+        <div>
+            Nickname   : <%=data.nick%>
+        </div>
+        <div>
+            <%=data.readcount%>
+        </div>
+        <div>
+            <div> Content : </div>
+            <%=data.content%>
+        </div>
+        <div class="btncont">
+            <a class='linkbtn' href="/list?orderBy=<%=orderBy%>&page=<%=page%>&tableid=<%=tableid%>">목록보기</a>
+            <a class='linkbtn' href="/delete?no=<%=data.no%>&tableid=<%=tableid%>">삭제</a>
+            <a class='linkbtn' href="/edit?no=<%=data.no%>&tableid=<%=tableid%>">수정</a>
+        </div>
+    </div>
+</body>
+
+</html>

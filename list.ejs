@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+        * {
+            font-size: 15px;
+        }
+
+        body {
+            background-color: #000;
+            color: white;
+        }
+
+        a {
+            color: white;
+        }
+
+        .nick {
+            color: green;
+        }
+
+        table,
+        td,
+        th {
+            /* border-left: 1px solid green; */
+            border-bottom: 1px solid green;
+            border-collapse: collapse;
+            border-left: 1px solid green;
+            border-right: 1px solid green;
+            border-top: 1px solid green;
+        }
+
+        table {
+            width: 1000px;
+            border: 0px solid palevioletred;
+        }
+
+        .header {
+            color: green;
+        }
+
+        .nick,
+        .date {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 80px;
+            min-width: 80px;
+            width: 80px;
+            text-align: center;
+            color : green;
+            
+        }
+
+        .title {
+            /* overflow: hidden; */
+            /* white-space: nowrap; */
+            /* text-overflow: ellipsis; */
+            /* overflow: hidden; */
+
+            max-width: 840px;
+            width: 840px;
+            background-color: black;
+            /* text-align: center; */
+        }
+
+        .title>div {
+            /* display:inline-block; */
+            word-break:normal;
+            color:black;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            /* background-color: moccasin; */
+            max-width: calc(100%);
+            width:100%;
+            /* width: calc(100%); */
+        }
+
+        td {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr class="header">
+            <th>Title</th>
+            <th>Nick</th>
+            <th>Date</th>
+            <th>
+                <% if(!orderBy) { %>
+                    <a href="/list?page=<%=page%>&orderBy=readcount&tableid=<%=tableid%>">Views</a>
+                <% } else { %>
+                    <a href="/list?page=<%=page%>&tableid=<%=tableid%>">Views</a>
+                <% } %>
+                <!-- <%=(()=>{
+                    if(orderBy) {
+                        return "orderBy"
+                    } else {
+                        return "Views"
+                    }
+                })()%> -->
+            </th>
+        </tr>
+        <% for(let i=0;i<titleList.length;i++){ %>
+            <tr>
+                <td class="title">
+                    <div>
+                        <a href="/content/<%=titleList[i].no%>?page=<%=page%>&tableid=<%=tableid%>&orderBy=<%=orderBy%>">
+                            <%=titleList[i].title%>
+                        </a>
+                    </div>
+                </td>
+
+                <td class="nick">
+                    <%= titleList[i].nick%>
+                </td>
+
+                <td class="date">
+                    <%=(()=>{
+                        let [Y,m,d]= titleList[i].date.split(' ');
+                        return `${m} ${d}`;
+                        })()%>
+                </td>
+
+                <td class="views">
+                    <%= titleList[i].readcount ? titleList[i].readcount : 0 %>
+                </td>
+            </tr>
+            <% } %>
+    </table>    
+    <form action="/list"> 
+        <select name = "topic"> 
+            <option  value="title"> title </option>
+            <option  value="content"> content </option>
+            <option  value="nick"> nick </option>
+        </select>
+        <!-- <input type="text" name="topic" value="<%=topic%>" />      -->
+        <input type="hidden" name="tableid" value="<%=tableid%>" />     
+        <input type="text" name="search" value="<%=search%>" />     
+        <input type="submit" value="<%='Search'%>" />       
+        
+    </form>
+    <div> 
+        <a class='linkbtn' href="/list?page=<%=page%>&tableid=<%=tableid%>">
+            Original List
+        </a>
+    </div>
+    <div>
+        <a href="/list?page=<%=pre%>&orderBy=readcount&tableid=<%=tableid%>">
+            Order by most Views
+        </a>
+    </div>
+    <a href="/list?page=<%=pre%>&orderBy=<%=orderBy%>&search=<%=search%>&tableid=<%=tableid%>"> pre </a>
+    <span>
+        <%=page%>
+    </span>
+    <a href="/list?page=<%=next%>&orderBy=<%=orderBy%>&search=<%=search%>&tableid=<%=tableid%>"> next </a>
+    <a href="/new?tableid=<%=tableid%>"> new </a>
+</body>
+</html>

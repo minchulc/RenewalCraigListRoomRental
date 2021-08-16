@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>edit</title>
+</head> 
+    <body>
+        <form action="/submit">             
+            <input type = "text" name="title" value = "<%=data.title%>"/>
+            <br/>
+            <input type = "text" name ="nick" value = "<%=data.nick%>"/>
+            <br/> 
+            <input type = "hidden" name ="no" value = "<%=data.no%>"/>
+            <input type = "hidden" name ="tableid" value = "<%=tableid%>"/>
+            <textarea name = "content"><%=data.content%></textarea>
+            <input type = "submit"/>
+        </form>
+    </body> 
+</html> 
